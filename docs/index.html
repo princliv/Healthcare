@@ -36,13 +36,34 @@
     </div>
     </header>
 
+    <!-- Banner Section -->
+    <section class="banner-slider">
+        <div class="slide active" style="background-image: url('assets/infrastructure.jpg');">
+            <div class="banner-text">Excellent Infrastructure</div>
+        </div>
+        <div class="slide" style="background-image: url('assets/247.jpg');">
+            <div class="banner-text">24/7 Open</div>
+        </div>
+        <div class="slide" style="background-image: url('assets/medical_team.jpg');">
+            <div class="banner-text">Qualified Medical Team</div>
+        </div>
+        <div class="slide" style="background-image: url('assets/Equipments.jpg');">
+            <div class="banner-text">Advanced Equipment</div>
+        </div>
+
+        <!-- Arrows -->
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
+    </section>
+
+
     <!-- hero.html -->
     <section class="hero">
         <div class="hero-content">
             <h1>Care Beyond the Cure</h1>
             <p>Your health is our highest priority. Compassionate care from trusted professionals.</p>
             <div class="hero-buttons">
-            <a href="#" class="btn-primary">Book Appointment</a>
+            <a href="appointment.html" class="btn-primary">Book Appointment</a>
             <a href="#" class="btn-secondary">Our Services</a>
             </div>
         </div>
@@ -207,8 +228,8 @@
     <!-- contact.html -->
     <section class="contact reveal" id="contact">
         <div class="contact-header">
-            <h2>Contact Us & Book Appointment</h2>
-            <p>We are here to assist you. Reach out or schedule your visit easily.</p>
+            <h2>Contact Us</h2>
+            <p>We are here to assist you.</p>
         </div>
 
         <div class="contact-content">
@@ -245,7 +266,7 @@
             <input type="date" id="date" name="date" placeholder="Preferred Appointment Date" required min="" />
             <textarea id="message" name="message" placeholder="Additional Details (optional)"></textarea>
 
-            <button type="submit">Book Appointment</button>
+            <button type="submit">Submit</button>
             </form>
         </div>
 
@@ -334,6 +355,35 @@
 
     <!-- Add before </body> tag -->
     <script>
+        // Banner Slider
+        const slides = document.querySelectorAll('.slide');
+        const next = document.querySelector('.next');
+        const prev = document.querySelector('.prev');
+        let index = 0;
+
+        function showSlide(i) {
+            slides.forEach((slide, idx) => {
+            slide.classList.remove('active');
+            if (i === idx) slide.classList.add('active');
+            });
+        }
+
+        function nextSlide() {
+            index = (index + 1) % slides.length;
+            showSlide(index);
+        }
+
+        function prevSlide() {
+            index = (index - 1 + slides.length) % slides.length;
+            showSlide(index);
+        }
+
+        next.addEventListener('click', nextSlide);
+        prev.addEventListener('click', prevSlide);
+
+        // Auto slide
+        setInterval(nextSlide, 4000); // 4 seconds
+
         // Hamburger Menu Toggle
         const hamburger = document.getElementById('hamburger');
         const navbar = document.getElementById('navbar');
@@ -396,7 +446,7 @@
                 return;
             }
 
-            alert(`Thank you, ${name}! Your appointment on ${date} has been booked.`);
+            alert(`Thank you, We will contact you soon, ${name}!`);
             this.reset();
             });
         }
